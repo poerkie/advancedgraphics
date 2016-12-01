@@ -17,21 +17,30 @@ namespace template
         public Surface screen;
         public Scene scene;
         public Camera camera;
+        
 
         public void Init()
         {
-            screen.Clear(0x2222ff);
+            screen.Clear(0x000000);
             scene = Scene.Threeballs();
-            camera = new Camera(new Vector3d(0, 0, 0), new Vector3d(0, 0, 1));
+            camera = new Camera(new Vector3(0, 0, 0));
         }
         public void Tick()
         {
-            screen.Print("hello world!", 2, 2, 0xffffff);
-            camera.update();
+            //screen.Print("hello world!", 2, 2, 0xffffff);
+            //camera.update();
 
         }
         public void Render()
         {
+            for(int wid =0; wid< screen.width;wid++)
+            {
+                for(int hei = 0; hei <screen.height;hei++)
+                {
+                    Vector3 vecontargetsquare = new Vector3(((0-camera.halftargetsquarewidht)+((2*camera.halftargetsquarewidht)/screen.width)*wid),((0-camera.halftargetsquareheight)+(2*camera.halftargetsquareheight/screen.height)*hei),1);
+                    screen.pixels[wid + hei * screen.height] = traceRay((vecontargetsquare-(camera.cameraMatrix.Column3.Xyz)).Normalized() , camera.cameraMatrix.Column3.Xyz).ToArgb();
+                }
+            }
             /*The Raytracer implements a
   method Render, which uses the camera to loop over the pixels of the screen plane and to
   generate a ray for each pixel, which is then used to find the nearest intersection. The result is
@@ -40,5 +49,10 @@ namespace template
 
         }
 
+        public Color traceRay(Vector3 Direction, Vector3 Origin )
+        {
+            
+            return new Intersection(Direction,Origin,scene.shapes).color;
+        }
     }
 }

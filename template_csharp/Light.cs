@@ -9,9 +9,9 @@ namespace template
 {
     class Light
     {
-        public Vector3d Position;
+        public Vector3 Position;
         public double intensity;
-        public Light (Vector3d Position,double intensity)
+        public Light (Vector3 Position,double intensity)
         {
             this.Position = Position;
             this.intensity = intensity;

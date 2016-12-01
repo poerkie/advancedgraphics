@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using OpenTK;
+using System.Drawing;
 using System.Threading.Tasks;
 
 namespace template
@@ -10,12 +11,12 @@ namespace template
     
     class Plane : Primitive
     {
-        public Vector3d Normal;
-        public Plane(Vector3d Normal, Vector3d Position, Vector3d Color)
+        public Vector3 Normal;
+        public Plane(Vector3 Normal, Vector3 Position, Color color)
         {
             this.Normal = Normal;
             this.Position = Position;
-            this.Color = Color;
+            this.Color = color;
 
         }
     }
