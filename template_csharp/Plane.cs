@@ -20,5 +20,21 @@ namespace template
             this.Material = mat;
 
         }
+        public override void Intersect(Ray ray)
+        {
+            
+            float notparalel = Vector3.Dot(this.Normal, ray.Direction);
+            if (notparalel != 0)
+            {
+                float bottom = (Vector3.Dot(ray.Direction, this.Normal));
+                float top = (-(Vector3.Dot(ray.Origin, this.Normal) + this.Distance));
+                float distance = top / bottom;
+                if (distance < ray.TraveledDistance && distance >= 0)
+                {
+                    ray.TraveledDistance = distance;
+                    ray.NearestPrimitive = this;
+                }
+            }
+        }
     }
 }

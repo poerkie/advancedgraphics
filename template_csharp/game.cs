@@ -17,19 +17,45 @@ namespace template
         public Surface screen;
         public Scene scene;
         public Camera camera;
-        
+        public DateTime lastframe;
 
         public void Init()
         {
+            lastframe = DateTime.Now;
             screen.Clear(0x000000);
             scene = Scene.Threeballs();
             camera = new Camera(new Vector3(0, 0, 0),new Vector3(0,0,1),screen.width,screen.height,1);
         }
         public void Tick()
         {
-            //screen.Print("hello world!", 2, 2, 0xffffff);
+            screen.Print((DateTime.Now-lastframe).TotalMilliseconds.ToString(), 2, 30, 0xffffff);
+            lastframe = DateTime.Now;
+            screen.Print(camera.Position.ToString(), 2, 2, 0xffffff);
             //camera.update();
-
+            if (Keyboard.GetState().IsKeyDown(Key.S))
+            {
+                camera.Position =camera.Position + new Vector3(0, 0.1f, 0);
+            }
+            if (Keyboard.GetState().IsKeyDown(Key.W))
+            {
+                camera.Position = camera.Position + new Vector3(0, -0.1f, 0);
+            }
+            if (Keyboard.GetState().IsKeyDown(Key.D))
+            {
+                camera.Position = camera.Position + new Vector3(-0.1f, 0, 0);
+            }
+            if (Keyboard.GetState().IsKeyDown(Key.A))
+            {
+                camera.Position = camera.Position + new Vector3(0.1f, 0, 0);
+            }
+            if (Keyboard.GetState().IsKeyDown(Key.Q))
+            {
+                camera.Position = camera.Position + new Vector3(0, 0, -0.1f);
+            }
+            if (Keyboard.GetState().IsKeyDown(Key.E))
+            {
+                camera.Position = camera.Position + new Vector3(0, 0, 0.1f);
+            }
         }
         public void Render()
         {
@@ -51,11 +77,11 @@ namespace template
 
         public int traceRay(Vector3 Direction, Vector3 Origin )
         {
-            Intersection inter = new Intersection(Direction.Normalized(),Origin,scene.shapes);
+            Ray firedRay = new Ray(Direction.Normalized(),Origin,scene.shapes);
 
-            if(inter.nearestShape != null)
+            if(firedRay.NearestPrimitive != null)
             {
-                return inter.nearestShape.Material.color.ToArgb() ;
+                return firedRay.NearestPrimitive.Material.color.ToArgb() ;
             }
             return Color.Black.ToArgb();
         }

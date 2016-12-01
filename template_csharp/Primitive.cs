@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 namespace template
 {
     
-    class Primitive
+    abstract class Primitive
     {
         public Material Material;
-
-        
+        public abstract void Intersect(Ray ray);
     }
 }
