@@ -12,11 +12,11 @@ namespace template
     class Plane : Primitive
     {
         public Vector3 Normal;
-        public Plane(Vector3 Normal, Vector3 Position, Color color)
+        public Plane(Vector3 Normal, Vector3 Position, Material mat)
         {
             this.Normal = Normal;
             this.Position = Position;
-            this.Color = color;
+            this.Material = Material;
 
         }
     }

@@ -20,10 +20,10 @@ namespace template
             Scene retScene = new Scene();
             retScene.shapes = new List<Sphere>();
             retScene.lights = new List<Light>();
-          //  retScene.shapes.Add(new Plane(new Vector3d(0, 0, 0), new Vector3d(0, 1, 0), new Vector3d(20, 30, 40)));
-            retScene.shapes.Add(new Sphere(new Vector3(-3, 1, 5), Color.Yellow, 1));
-            retScene.shapes.Add(new Sphere(new Vector3(0, -4, 5), Color.Red,1));
-            retScene.shapes.Add(new Sphere(new Vector3(3, 1, 5), Color.Blue, 1));
+       //     retScene.shapes.Add(new Plane(new Vector3d(0, 0, 0), new Vector3d(0, 1, 0), Material.groenmat));
+            retScene.shapes.Add(new Sphere(new Vector3(-3, 1, 5),Material.roodmat(), 1));
+            retScene.shapes.Add(new Sphere(new Vector3(0, -4, 5), Material.geelmat(),1));
+            retScene.shapes.Add(new Sphere(new Vector3(3, 1, 5), Material.blauwmat(), 1));
             return retScene;
 
         }

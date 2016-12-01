@@ -12,13 +12,13 @@ namespace template
     class Intersection
     {
         public Vector3 intersectNormal;
-        public /*Material*/ Color color;
+       
         public double intersectiondistance;
         public Primitive nearestShape;
 
         public Intersection(Vector3 Direction, Vector3 Origin, List<Sphere> circles)
         {
-            color = Color.Black;
+            
             intersectiondistance = float.MaxValue;
         foreach (Sphere x in circles){
             float a = Vector3.Dot(Direction,Direction);
@@ -33,7 +33,7 @@ namespace template
                 {
                     intersectiondistance = answer1;
                     nearestShape = x;
-                    color = x.Color;
+                    
                 }
             }
             else if( det >0 )
@@ -42,13 +42,13 @@ namespace template
                 {
                     intersectiondistance = answer1;
                     nearestShape = x;
-                    color = x.Color;
+                  
                 }
                 else if(answer2 < intersectiondistance && answer2 >=0 )
                 {
                     intersectiondistance = answer2;
                     nearestShape = x;
-                    color = x.Color;
+          
                 }
             }
         }

@@ -51,8 +51,13 @@ namespace template
 
         public Color traceRay(Vector3 Direction, Vector3 Origin )
         {
-            
-            return new Intersection(Direction,Origin,scene.shapes).color;
+            Intersection inter = new Intersection(Direction,Origin,scene.shapes);
+
+            if(inter.nearestShape != null)
+            {
+                return inter.nearestShape.Material.color;
+            }
+            return Color.Black;
         }
     }
 }
