@@ -10,11 +10,13 @@ namespace template
     class Sphere : Primitive
     {
         public double Radius;
+        public Vector3 Position;
         public Sphere (Vector3 Position, Material mat, double Radius)
         {
             this.Position = Position;
             this.Material = mat;
             this.Radius = Radius;
         }
+
     }
 }

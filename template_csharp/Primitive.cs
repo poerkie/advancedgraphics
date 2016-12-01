@@ -11,8 +11,8 @@ namespace template
     
     class Primitive
     {
-  
-        public Vector3 Position;
         public Material Material;
+
+        
     }
 }

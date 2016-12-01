@@ -15,6 +15,8 @@ namespace template
          public static  Material geelmat() {return new Material(TypeofMaterial.Difsuse, Color.Yellow);}
          public static  Material blauwmat() {return new Material(TypeofMaterial.Difsuse, Color.Blue);}
          public static Material groenmat() { return new Material(TypeofMaterial.Difsuse, Color.Green); }
+         public static Material orangemat() { return new Material(TypeofMaterial.Difsuse, Color.Orange); }
+         public static Material purplemat() { return new Material(TypeofMaterial.Difsuse, Color.Purple); }
 
 
        public TypeofMaterial matType;

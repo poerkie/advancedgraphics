@@ -11,19 +11,23 @@ namespace template
     class Scene
     {
         public List<Light> lights;
-        public List<Sphere> shapes;
+        public List<Primitive> shapes;
         public Scene()
         { }
 
         public static Scene Threeballs ()
         {
             Scene retScene = new Scene();
-            retScene.shapes = new List<Sphere>();
+            retScene.shapes = new List<Primitive>();
             retScene.lights = new List<Light>();
-       //     retScene.shapes.Add(new Plane(new Vector3d(0, 0, 0), new Vector3d(0, 1, 0), Material.groenmat));
-            retScene.shapes.Add(new Sphere(new Vector3(-3, 1, 5),Material.roodmat(), 1));
-            retScene.shapes.Add(new Sphere(new Vector3(0, -4, 5), Material.geelmat(),1));
-            retScene.shapes.Add(new Sphere(new Vector3(3, 1, 5), Material.blauwmat(), 1));
+            retScene.shapes.Add(new Plane(new Vector3(-1,0, 0), -7, Material.groenmat()));
+            retScene.shapes.Add(new Plane(new Vector3(-1, 0, 0), 7, Material.orangemat()));
+            retScene.shapes.Add(new Plane(new Vector3(0, -1, 0),7, Material.purplemat()));
+            retScene.shapes.Add(new Plane(new Vector3(0, -1, 0), -7, Material.blauwmat()));
+            retScene.shapes.Add(new Plane(new Vector3(0, 0, -1), 10, Material.geelmat()));
+            retScene.shapes.Add(new Sphere(new Vector3(3, 0, 7),Material.roodmat(), 1));
+            retScene.shapes.Add(new Sphere(new Vector3(0, -2, 5), Material.purplemat(),1));
+            retScene.shapes.Add(new Sphere(new Vector3(-4, 4, 8), Material.blauwmat(),  1));
             return retScene;
 
         }

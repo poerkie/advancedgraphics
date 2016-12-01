@@ -23,7 +23,7 @@ namespace template
         {
             screen.Clear(0x000000);
             scene = Scene.Threeballs();
-            camera = new Camera(new Vector3(0, 0, 0));
+            camera = new Camera(new Vector3(0, 0, 0),new Vector3(0,0,1),screen.width,screen.height,1);
         }
         public void Tick()
         {
@@ -37,8 +37,8 @@ namespace template
             {
                 for(int hei = 0; hei <screen.height;hei++)
                 {
-                    Vector3 vecontargetsquare = new Vector3(((0-camera.halftargetsquarewidht)+((2*camera.halftargetsquarewidht)/screen.width)*wid),((0-camera.halftargetsquareheight)+(2*camera.halftargetsquareheight/screen.height)*hei),1);
-                    screen.pixels[wid + hei * screen.height] = traceRay((vecontargetsquare-(camera.cameraMatrix.Column3.Xyz)).Normalized() , camera.cameraMatrix.Column3.Xyz).ToArgb();
+                    Vector3 direction = ((camera.p0 + wid * camera.p0p1step + hei * camera.p0p2step)-camera.Position).Normalized();
+                    screen.pixels[wid + hei * screen.height] = traceRay(direction , camera.Position);
                 }
             }
             /*The Raytracer implements a
@@ -49,15 +49,15 @@ namespace template
 
         }
 
-        public Color traceRay(Vector3 Direction, Vector3 Origin )
+        public int traceRay(Vector3 Direction, Vector3 Origin )
         {
-            Intersection inter = new Intersection(Direction,Origin,scene.shapes);
+            Intersection inter = new Intersection(Direction.Normalized(),Origin,scene.shapes);
 
             if(inter.nearestShape != null)
             {
-                return inter.nearestShape.Material.color;
+                return inter.nearestShape.Material.color.ToArgb() ;
             }
-            return Color.Black;
+            return Color.Black.ToArgb();
         }
     }
 }
