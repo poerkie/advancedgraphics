@@ -26,7 +26,13 @@ namespace template
             float p2 = Vector3.Dot(q, q);
             if (p2 > this.Radius * this.Radius) { return; }// r2 = r * r
             t -= (float)Math.Sqrt(this.Radius * this.Radius - p2);
-            if ((t < ray.TraveledDistance) && (t > 0)) { ray.TraveledDistance = t; ray.NearestPrimitive = this; }
+            if ((t < ray.TraveledDistance) && (t > 0)) { 
+                ray.TraveledDistance = t; 
+                ray.NearestPrimitive = this;
+
+                ray.intersectionPosition = (t * ray.Direction + ray.Origin);
+                ray.intersectionNormal = (this.Position - ray.intersectionPosition).Normalized();
+            }
         }
     }
 }

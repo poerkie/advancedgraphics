@@ -29,10 +29,12 @@ namespace template
                 float bottom = (Vector3.Dot(ray.Direction, this.Normal));
                 float top = (-(Vector3.Dot(ray.Origin, this.Normal) + this.Distance));
                 float distance = top / bottom;
-                if (distance < ray.TraveledDistance && distance >= 0)
+                if (distance < ray.TraveledDistance && distance > 0)
                 {
                     ray.TraveledDistance = distance;
                     ray.NearestPrimitive = this;
+                    ray.intersectionNormal = this.Normal;
+                    ray.intersectionPosition = distance * ray.Direction + ray.Origin;
                 }
             }
         }

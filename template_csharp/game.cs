@@ -23,38 +23,63 @@ namespace template
         {
             lastframe = DateTime.Now;
             screen.Clear(0x000000);
-            scene = Scene.Threeballs();
-            camera = new Camera(new Vector3(0, 0, 0),new Vector3(0,0,1),screen.width,screen.height,1);
+            scene = Scene.ThreeBalls();
+            camera = new Camera(new Vector3(0, 0, 0),new Vector3(0,0,1),screen.width,screen.height,0.8f);
         }
         public void Tick()
         {
             screen.Print((DateTime.Now-lastframe).TotalMilliseconds.ToString(), 2, 30, 0xffffff);
             lastframe = DateTime.Now;
             screen.Print(camera.Position.ToString(), 2, 2, 0xffffff);
+            screen.Print(camera.FOV.ToString(), 2, 58, 0xffffff);
             //camera.update();
             if (Keyboard.GetState().IsKeyDown(Key.S))
             {
-                camera.Position =camera.Position + new Vector3(0, 0.1f, 0);
+                camera.Position =camera.Position + new Vector3(0, -1f, 0);
             }
             if (Keyboard.GetState().IsKeyDown(Key.W))
             {
-                camera.Position = camera.Position + new Vector3(0, -0.1f, 0);
+                camera.Position = camera.Position + new Vector3(0, 1f, 0);
             }
             if (Keyboard.GetState().IsKeyDown(Key.D))
             {
-                camera.Position = camera.Position + new Vector3(-0.1f, 0, 0);
+                camera.Position = camera.Position + new Vector3(1f, 0, 0);
             }
             if (Keyboard.GetState().IsKeyDown(Key.A))
             {
-                camera.Position = camera.Position + new Vector3(0.1f, 0, 0);
+                camera.Position = camera.Position + new Vector3(-1f, 0, 0);
             }
             if (Keyboard.GetState().IsKeyDown(Key.Q))
             {
-                camera.Position = camera.Position + new Vector3(0, 0, -0.1f);
+                camera.Position = camera.Position + new Vector3(0, 0, -1f);
             }
             if (Keyboard.GetState().IsKeyDown(Key.E))
             {
-                camera.Position = camera.Position + new Vector3(0, 0, 0.1f);
+                camera.Position = camera.Position + new Vector3(0, 0, 1f);
+            }
+            if (Keyboard.GetState().IsKeyDown(Key.Z))
+            {
+                camera.FOV -= 0.1f;
+            }
+            if (Keyboard.GetState().IsKeyDown(Key.X))
+            {
+                camera.FOV += 0.1f;
+            }
+            if (Keyboard.GetState().IsKeyDown(Key.R))
+            {
+                Init();
+            }
+            if(Keyboard.GetState().IsKeyDown(Key.T))
+            {
+                scene = Scene.Multiballs();
+            }
+            if(Keyboard.GetState().IsKeyDown(Key.Y))
+            {
+                scene = Scene.Walls();
+            }
+            if (Keyboard.GetState().IsKeyDown(Key.G))
+            {
+                scene = Scene.ThreeBalls();
             }
         }
         public void Render()
@@ -77,13 +102,11 @@ namespace template
 
         public int traceRay(Vector3 Direction, Vector3 Origin )
         {
-            Ray firedRay = new Ray(Direction.Normalized(),Origin,scene.shapes);
+            Ray firedRay = new Ray(Direction.Normalized(),Origin,scene.shapes,scene.lights);
 
-            if(firedRay.NearestPrimitive != null)
-            {
-                return firedRay.NearestPrimitive.Material.color.ToArgb() ;
-            }
-            return Color.Black.ToArgb();
+           
+                return firedRay.FoundColor.ToArgb() ;
+          
         }
     }
 }

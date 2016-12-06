@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
 using System.Text;
+using OpenTK;
+using OpenTK.Graphics;
 using System.Threading.Tasks;
 
 namespace template
@@ -11,21 +13,26 @@ namespace template
    
     public class Material
     {
-        public static Material roodmat() { return new Material(TypeofMaterial.Difsuse, Color.Red); }
-         public static  Material geelmat() {return new Material(TypeofMaterial.Difsuse, Color.Yellow);}
-         public static  Material blauwmat() {return new Material(TypeofMaterial.Difsuse, Color.Blue);}
-         public static Material groenmat() { return new Material(TypeofMaterial.Difsuse, Color.Green); }
-         public static Material orangemat() { return new Material(TypeofMaterial.Difsuse, Color.Orange); }
-         public static Material purplemat() { return new Material(TypeofMaterial.Difsuse, Color.Purple); }
+        public static Material roodmat() { return new Material(TypeofMaterial.Difsuse, Color4.Red, 0.2f); }
+        public static Material geelmat() { return new Material(TypeofMaterial.Difsuse, Color4.Yellow, 0.2f); }
+        public static Material blauwmat() { return new Material(TypeofMaterial.Difsuse, Color4.Blue, 0.2f); }
+        public static Material groenmat() { return new Material(TypeofMaterial.Difsuse, Color4.Green, 0.2f); }
+        public static Material orangemat() { return new Material(TypeofMaterial.Difsuse, Color4.Orange,0.2f); }
+        public static Material purplemat() { return new Material(TypeofMaterial.Difsuse,Color4.Purple,0.2f); }
+        public static Material witmat() { return new Material(TypeofMaterial.Difsuse, Color4.WhiteSmoke,0.5f); }
+
 
 
        public TypeofMaterial matType;
-       public Color color;
-
-        public Material (TypeofMaterial mattype, Color color)
+       public Color4 color;
+       public float coef;
+       public float specPower;
+        public Material (TypeofMaterial mattype, Color4 color, float coef)
         {
             this.matType = mattype;
             this.color = color;
+            this.coef = coef;
+            this.specPower = 8;
         }
     }
 }

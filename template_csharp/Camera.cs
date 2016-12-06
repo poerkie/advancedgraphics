@@ -21,7 +21,7 @@ namespace template
         /// <summary>
         /// 
         /// </summary>
-        public Vector3 screencenter {get{return Position + this.ScreenDistance * this.Direction;}}
+        public Vector3 screencenter {get{return Position + this.FOV * this.Direction;}}
         public Vector3 p0  { get {return screencenter+new Vector3(-1,1,0);}}
         public Vector3 p1 { get {return screencenter+new Vector3(1,1,0);}}
         public Vector3 p2 { get {return screencenter+new Vector3(-1,-1,0);}}
@@ -29,16 +29,16 @@ namespace template
         public Vector3 p0p2step { get{return (p2 - p0)/screensheigth;}}
         public Vector3 Direction;
         public Vector3 Position;
-        public float ScreenDistance;
+        public float FOV;
         private int screenswidt;
         private int screensheigth;
-        public Camera(Vector3 Position, Vector3 Direction, int screenwidt, int screenheight, float screendistance)
+        public Camera(Vector3 Position, Vector3 Direction, int screenwidt, int screenheight, float FOV)
         {
             this.screensheigth = screenheight;
             this.screenswidt = screenwidt;
             this.Position = Position;
             this.Direction = Direction;
-            this.ScreenDistance = screendistance;
+            this.FOV = FOV;
             //Vector3 screencenter = Position + screendistance * Direction;
             //this.p0 = screencenter+new Vector3(-1,1,0);
             //this.p1 = screencenter + new Vector3(1,1,0);
@@ -63,12 +63,6 @@ namespace template
 
         }*/
 
-
-        public void update()
-        {
-            
-          
-        }
 
         
             

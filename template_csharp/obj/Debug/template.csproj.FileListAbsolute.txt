@@ -1,7 +1,7 @@
-C:\Users\icmonkey\Downloads\template_csharp\bin\Debug\template.exe.config
-C:\Users\icmonkey\Downloads\template_csharp\bin\Debug\template.exe
-C:\Users\icmonkey\Downloads\template_csharp\bin\Debug\template.pdb
-C:\Users\icmonkey\Downloads\template_csharp\bin\Debug\OpenTK.dll
-C:\Users\icmonkey\Downloads\template_csharp\obj\Debug\template.csprojResolveAssemblyReference.cache
-C:\Users\icmonkey\Downloads\template_csharp\obj\Debug\template.exe
-C:\Users\icmonkey\Downloads\template_csharp\obj\Debug\template.pdb
+D:\Universiteit\advanced graphics\template_csharp\bin\Debug\template.exe.config
+D:\Universiteit\advanced graphics\template_csharp\obj\Debug\template.exe
+D:\Universiteit\advanced graphics\template_csharp\obj\Debug\template.pdb
+D:\Universiteit\advanced graphics\template_csharp\bin\Debug\template.exe
+D:\Universiteit\advanced graphics\template_csharp\bin\Debug\template.pdb
+D:\Universiteit\advanced graphics\template_csharp\bin\Debug\OpenTK.dll
+D:\Universiteit\advanced graphics\template_csharp\obj\Debug\template.csprojResolveAssemblyReference.cache
